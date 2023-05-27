@@ -19,7 +19,7 @@ const Home = () => {
         }
 
         fetchWorouts()
-    }, [])
+    }, [dispatch])
 
     return (
         <div className="home">
