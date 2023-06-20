@@ -1,9 +1,9 @@
 import { useState } from "react"
-import { useWorkoutsContext } from "../hooks/useWorkoutsContext"
+import { useTasksContext } from "../hooks/useTasksContext"
 import { useAuthContext } from "../hooks/useAuthContext"
 
-const WorkoutFrom = () => {
-    const {dispatch} = useWorkoutsContext()
+const TaskFrom = () => {
+    const {dispatch} = useTasksContext()
     const {user} = useAuthContext()
 
     const [title, setTitle] = useState('')
@@ -20,11 +20,11 @@ const WorkoutFrom = () => {
             return
         }
 
-        const workout = {title, load, reps}
+        const task = {title, load, reps}
 
-        const response = await fetch('/api/workouts', {
+        const response = await fetch('/api/tasks', {
             method: 'POST',
-            body: JSON.stringify(workout),
+            body: JSON.stringify(task),
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${user.token}`
@@ -44,15 +44,15 @@ const WorkoutFrom = () => {
             setReps('')
             setError(null)
             setEmptyFields([])
-            console.log('new workout added', json)
-            dispatch({type: 'CREATE_WORKOUT', payload: json})
+            console.log('new task added', json)
+            dispatch({type: 'CREATE_TASK', payload: json})
         }
         
     }
 
     return(
         <form className="create" onSubmit={handleSubmit}>
-            <h3>Add a New Workout</h3>
+            <h3>Add a New Task</h3>
 
             <label>Excersize Title:</label>
             <input 
@@ -78,10 +78,10 @@ const WorkoutFrom = () => {
                 className={emptyFields.includes('reps') ? 'error' : ''}
             />
 
-            <button>Add Workout</button>
+            <button>Add Task</button>
             {error && <div className="error">{error}</div>}
         </form>
     )
 }
 
-export default WorkoutFrom
+export default TaskFrom

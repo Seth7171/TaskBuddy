@@ -1,6 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useAuthContext } from "./hooks/useAuthContext"
 
+// cd frontend
+// npm run start
+// npm i react-router-dom *ONCE*
+
 //pages & components
 import Home from './pages/Home';
 import Navbar from './components/Navbar';

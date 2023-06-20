@@ -1,9 +1,9 @@
 import { useAuthContext } from "./useAuthContext"
-import { useWorkoutsContext } from "./useWorkoutsContext"
+import { useTasksContext } from "./useTasksContext"
 
 export const useLogout = () => {
     const {dispatch} = useAuthContext()
-    const {dispatch : workoutsDispatch } = useWorkoutsContext()
+    const {dispatch : tasksDispatch } = useTasksContext()
 
     const logout = () => {
         //remnove user from  storage
@@ -11,7 +11,7 @@ export const useLogout = () => {
 
         //dispatch logout action
         dispatch({type: 'LOGOUT'})
-        workoutsDispatch({type: 'SET_WORKOUTS', payload: null})
+        tasksDispatch({type: 'SET_TASKS', payload: null})
     }
 
     return {logout}

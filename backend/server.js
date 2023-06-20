@@ -3,7 +3,7 @@ require('dotenv').config()
 
 const express = require('express')
 const mongoose = require('mongoose')
-const workoutRoutes = require('./routes/workouts')
+const taskRoutes = require('./routes/tasks')
 const userRoutes = require('./routes/user')
 
 // clear    To clear the terminal
@@ -14,6 +14,7 @@ const userRoutes = require('./routes/user')
 // in shell : Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 //  nodemon server.js            ---- dynamic node change
 
+// cd backend
 // OR just do (after installing nodemon) : npm run dev
 
 
@@ -29,7 +30,7 @@ app.use((req, res, next) => {
 })
 
 // routes
-app.use('/api/workouts', workoutRoutes)
+app.use('/api/tasks', taskRoutes)
 app.use('/api/user', userRoutes)
 
 // connect to db
