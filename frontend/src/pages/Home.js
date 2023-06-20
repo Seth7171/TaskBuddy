@@ -12,7 +12,7 @@ const Home = () => {
 
 
     useEffect(() =>{
-        const fetchWorouts = async()=> {
+        const fetchTasks = async()=> {
             const response = await fetch('/api/tasks', {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
@@ -25,7 +25,7 @@ const Home = () => {
             }
         }
         if (user) {
-            fetchWorouts()
+            fetchTasks()
         }
     }, [dispatch,user])
 
