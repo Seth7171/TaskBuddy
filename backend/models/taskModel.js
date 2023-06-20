@@ -7,13 +7,13 @@ const taskSchema = new Schema({
         type: String,
         required: true
     },
-    reps: {
-        type: Number,
-        required: true
+    note: {
+        type: String,
+        required: false
     },
-    load: {
-        type: Number,
-        required: true
+    deadline: {
+        type: Date,
+        required: false
     },
     user_id: {
         type: String,

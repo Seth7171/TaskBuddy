@@ -28,8 +28,8 @@ const TaskDetails= ({ task }) => {
     return (
         <div className="task-details">
             <h4>{task.title}</h4>
-            <p><strong>Load (kg): </strong>{task.load}</p>
-            <p><strong>Reps: </strong>{task.reps}</p>
+            <p><strong>Note: </strong>{task.note}</p>
+            <p><strong>Deadline: </strong>{task.deadline}</p>
             <p>{formatDistanceToNow(new Date(task.createdAt), {addSuffix: true})}</p>
             <span className="material-symbols-outlined" onClick={handleClick}>delete</span>
         </div>

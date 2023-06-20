@@ -7,8 +7,8 @@ const TaskFrom = () => {
     const {user} = useAuthContext()
 
     const [title, setTitle] = useState('')
-    const [load, setLoad] = useState('')
-    const [reps, setReps] = useState('')
+    const [note, setNote] = useState('')
+    const [deadline, setDeadline] = useState('')
     const [error, setError] = useState(null)
     const [emptyFields, setEmptyFields] = useState([])
 
@@ -20,7 +20,7 @@ const TaskFrom = () => {
             return
         }
 
-        const task = {title, load, reps}
+        const task = {title, note, deadline}
 
         const response = await fetch('/api/tasks', {
             method: 'POST',
@@ -40,8 +40,8 @@ const TaskFrom = () => {
 
         if (response.ok) {
             setTitle('')
-            setLoad('')
-            setReps('')
+            setNote('')
+            setDeadline('')
             setError(null)
             setEmptyFields([])
             console.log('new task added', json)
@@ -54,7 +54,7 @@ const TaskFrom = () => {
         <form className="create" onSubmit={handleSubmit}>
             <h3>Add a New Task</h3>
 
-            <label>Excersize Title:</label>
+            <label>Task Title:</label>
             <input 
                 type="text"
                 onChange={(e) => setTitle(e.target.value)}
@@ -62,20 +62,20 @@ const TaskFrom = () => {
                 className={emptyFields.includes('title') ? 'error' : ''}
             />
 
-            <label>Load(in Kg):</label>
+            <label>Note (Optional):</label>
             <input 
-                type="number"
-                onChange={(e) => setLoad(e.target.value)}
-                value={load}
-                className={emptyFields.includes('load') ? 'error' : ''}
+                type="text"
+                onChange={(e) => setNote(e.target.value)}
+                value={note}
+                className={emptyFields.includes('note') ? 'error' : ''}
             />
 
-            <label>Reps:</label>
+            <label>Deadline:</label>
             <input 
-                type="number"
-                onChange={(e) => setReps(e.target.value)}
-                value={reps}
-                className={emptyFields.includes('reps') ? 'error' : ''}
+                type="date"
+                onChange={(e) => setDeadline(e.target.value)}
+                value={deadline}
+                className={emptyFields.includes('deadline') ? 'error' : ''}
             />
 
             <button>Add Task</button>
