@@ -22,10 +22,41 @@ header .container {
   align-items: center;
   justify-content: space-between;
 }
+/* Hover effect for header links */
 header a {
-  color: #333;
-  text-decoration: none;
+  position: relative;
+  color: #333; /* Initial color */
+  transition: color 0.3s ease;
 }
+
+header a::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #ff00ff; /* Vibrant pink color */
+  transform: scaleX(0); /* Initially hidden */
+  transition: transform 0.3s ease;
+}
+
+header a:hover {
+  color: #ff00ff; /* Change the color to vibrant pink on hover */
+}
+
+header a:hover::before {
+  transform: scaleX(1); /* Expand the line on hover */
+}
+
+
+
+/* Add a subtle box shadow effect on header links when focused or active */
+header a:focus,
+header a:active {
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
 .pages{
   max-width: 1400px;
   padding: 20px;
@@ -80,15 +111,6 @@ input {
   border-radius: 4px;
   box-sizing: border-box;
 }
-form button {
-  background: var(--primary);
-  border: 0;
-  color: #fff;
-  padding: 10px;
-  font-family: "Poppins";
-  border-radius: 4px;
-  cursor: pointer;
-}
 div.error {
   padding: 10px;
   background: #ffefef;
@@ -109,16 +131,68 @@ nav {
 nav a {
   margin-left: 10px;
 }
-nav button {
+
+/* Styling for the bubbly button */
+nav button,form button {
   background: #fff;
-  color: var(--primary);
-  border: 2px solid var(--primary);
-  padding: 6px 10px;
+  color: #f97474; 
+  border: none;
+  padding: 5px 10px;
   border-radius: 4px;
   font-family: "Poppins";
   cursor: pointer;
   font-size: 1em;
   margin-left: 10px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: transform 0.3s ease;
+  box-shadow: 0 0 0 2px #f97474; /* Add a frame with a box shadow */
+}
+
+form button{
+  color: #12de27; 
+  box-shadow: 0 0 0 2px #12de27; /* Add a frame with a box shadow */
+}
+
+/* Pseudo-element for the button's bubble effect */
+nav button::before,
+form button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  background-color: #f97474; 
+  border-radius: 50%;
+  opacity: 0.7;
+  z-index: -1;
+  transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+}
+
+form button::before {
+  background-color: #12de27; 
+}
+
+/* Bubble effect on hover */
+nav button:hover,
+form button:hover{
+  color: #ffffff; 
+}
+
+/* Bubble effect on hover */
+nav button:hover::before,
+form button:hover::before{
+  width: 200%; /* Expand the bubble's width */
+  height: 200%; /* Expand the bubble's height */
+}
+
+/* Button click effect */
+nav button:active,
+form button:active {
+  transform: scale(0.9); /* Decrease the button size on click */
 }
 
 /* auth forms */
@@ -128,4 +202,51 @@ form.signup, form.login {
   padding: 20px;
   background: #fff;
   border-radius: 4px;
+}
+form.signup h3,
+form.login h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+form.signup label,
+form.login label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #555;
+}
+
+form.signup button,
+form.login button {
+  width: 20%; /* Set the desired width for the button */
+  margin-left: auto; /* Automatically align the button to the right */
+  margin-right: auto; /* Automatically align the button to the left */
+  display: block; /* Make the button a block-level element */
+}
+
+form.signup .error,
+form.login .error {
+  color: #f44336;
+  margin-top: 10px;
+  font-size: 0.9em;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-out;
 }
