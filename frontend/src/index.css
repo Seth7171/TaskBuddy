@@ -196,13 +196,21 @@ form button:active {
 }
 
 /* auth forms */
-form.signup, form.login {
+form.signup,
+form.login {
   max-width: 400px;
   margin: 40px auto;
   padding: 20px;
   background: #fff;
   border-radius: 4px;
+  border: 1px solid transparent; /* Add a border */
 }
+
+form.signup.error,
+form.login.error {
+  border-color: var(--error); /* Set the border color to the error color */
+}
+
 form.signup h3,
 form.login h3 {
   text-align: center;
@@ -220,10 +228,10 @@ form.login label {
 
 form.signup button,
 form.login button {
-  width: 20%; /* Set the desired width for the button */
-  margin-left: auto; /* Automatically align the button to the right */
-  margin-right: auto; /* Automatically align the button to the left */
-  display: block; /* Make the button a block-level element */
+  width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 form.signup .error,
@@ -233,13 +241,41 @@ form.login .error {
   font-size: 0.9em;
 }
 
+/* Add error border to input fields */
+form.signup input.error,
+form.login input.error {
+  border: 1px solid var(--error) !important; /* Add !important to override other styles */
+}
+
+
+
+/* Flip effect */
+.flip-enter {
+  opacity: 0;
+  transform: rotateY(180deg);
+}
+
+.flip-enter-active {
+  opacity: 1;
+  transform: rotateY(0deg);
+  transition: opacity 500ms ease-in, transform 500ms ease-in;
+}
+
+.flip-exit {
+  opacity: 0;
+}
+
+.flip-exit-active {
+  opacity: 0;
+}
+
 .fade-enter {
   opacity: 0;
 }
 
 .fade-enter-active {
   opacity: 1;
-  transition: opacity 300ms ease-in;
+  transition: opacity 500ms ease-in;
 }
 
 .fade-exit {
@@ -248,5 +284,11 @@ form.login .error {
 
 .fade-exit-active {
   opacity: 0;
-  transition: opacity 300ms ease-out;
+  transition: opacity 500ms ease-out;
 }
+
+
+
+
+
+

@@ -27,29 +27,27 @@ const getTask = async (req, res) => {
 }
 
 // create new task
-const createTask =async (req, res) => {
-    const {title, note, deadline} = req.body
-
-    let emptyFields = []
-    if (!title){
-        emptyFields.push('title')
+const createTask = async (req, res) => {
+    const { title, note, deadline } = req.body;
+  
+    let emptyFields = [];
+    if (!title) {
+      emptyFields.push('title');
     }
-    if (!note){
-        emptyFields.push('note')
+    // Remove the check for the note field
+    if (!deadline) {
+      emptyFields.push('deadline');
     }
-    if (!deadline){
-        emptyFields.push('deadline')
-    }
-    if(emptyFields.length > 0) {
-        return res.status(400).json({error: 'please fill in all the fields', emptyFields})
+    if (emptyFields.length > 0) {
+      return res.status(400).json({ error: 'please fill in all the fields', emptyFields });
     }
     // add doc to db
     try {
-        const user_id = req.user._id
-        const task = await Task.create({title, note, deadline, user_id})
-        res.status(200).json(task)
-    } catch(error) {
-        res.status(400).json({error: error.message})
+      const user_id = req.user._id;
+      const task = await Task.create({ title, note, deadline, user_id });
+      res.status(200).json(task);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
     }
 }
 

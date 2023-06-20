@@ -2,9 +2,9 @@ import { useState } from "react"
 import { useTasksContext } from "../hooks/useTasksContext"
 import { useAuthContext } from "../hooks/useAuthContext"
 
-const TaskFrom = () => {
-    const {dispatch} = useTasksContext()
-    const {user} = useAuthContext()
+const TaskForm = () => {
+    const { dispatch } = useTasksContext()
+    const { user } = useAuthContext()
 
     const [title, setTitle] = useState('')
     const [note, setNote] = useState('')
@@ -15,12 +15,12 @@ const TaskFrom = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        if (!user){
+        if (!user) {
             setError('You must be logged in')
             return
         }
 
-        const task = {title, note, deadline}
+        const task = { title, note, deadline }
 
         const response = await fetch('/api/tasks', {
             method: 'POST',
@@ -33,7 +33,7 @@ const TaskFrom = () => {
 
         const json = await response.json()
 
-        if(!response.ok){
+        if (!response.ok) {
             setError(json.error)
             setEmptyFields(json.emptyFields)
         }
@@ -45,17 +45,17 @@ const TaskFrom = () => {
             setError(null)
             setEmptyFields([])
             console.log('new task added', json)
-            dispatch({type: 'CREATE_TASK', payload: json})
+            dispatch({ type: 'CREATE_TASK', payload: json })
         }
-        
+
     }
 
-    return(
+    return (
         <form className="create" onSubmit={handleSubmit}>
             <h3>Add a New Task</h3>
 
             <label>Task Title:</label>
-            <input 
+            <input
                 type="text"
                 onChange={(e) => setTitle(e.target.value)}
                 value={title}
@@ -63,7 +63,7 @@ const TaskFrom = () => {
             />
 
             <label>Note (Optional):</label>
-            <input 
+            <input
                 type="text"
                 onChange={(e) => setNote(e.target.value)}
                 value={note}
@@ -71,7 +71,7 @@ const TaskFrom = () => {
             />
 
             <label>Deadline:</label>
-            <input 
+            <input
                 type="date"
                 onChange={(e) => setDeadline(e.target.value)}
                 value={deadline}
@@ -84,4 +84,4 @@ const TaskFrom = () => {
     )
 }
 
-export default TaskFrom
+export default TaskForm;

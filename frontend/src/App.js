@@ -1,18 +1,15 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { useAuthContext } from "./hooks/useAuthContext"
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useAuthContext } from "./hooks/useAuthContext";
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import './index.css';
 
-// cd frontend
-// npm run start
-// npm i react-router-dom *ONCE*
-
-//pages & components
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 
 function App() {
-  const { user } = useAuthContext()
+  const { user } = useAuthContext();
 
   return (
     <div className="App">
@@ -21,23 +18,38 @@ function App() {
         <div className="pages">
           <Routes>
             <Route
-              path = "/"
-              element={user ? <Home /> : <Navigate to="/login"/>}
-              >
-            </Route>
+              path="/"
+              element={
+                <TransitionGroup>
+                  <CSSTransition key={window.location.pathname} classNames="fade" timeout={600}>
+                    {user ? <Home /> : <Navigate to="/login" />}
+                  </CSSTransition>
+                </TransitionGroup>
+              }
+            />
             <Route
-              path = "/login"
-              element={!user ? <Login /> : <Navigate to="/"/>}
-              >
-            </Route>
+              path="/login"
+              element={
+                <TransitionGroup>
+                  <CSSTransition key="login" classNames="flip" timeout={500}>
+                    {!user ? <Login /> : <Navigate to="/" />}
+                  </CSSTransition>
+                </TransitionGroup>
+              }
+            />
             <Route
-              path = "/signup"
-              element={!user ? <Signup /> : <Navigate to="/"/>}
-              >
-            </Route>
+              path="/signup"
+              element={
+                <TransitionGroup>
+                  <CSSTransition key="signup" classNames="flip" timeout={500}>
+                    {!user ? <Signup /> : <Navigate to="/" />}
+                  </CSSTransition>
+                </TransitionGroup>
+              }
+            />
           </Routes>
         </div>
-        </BrowserRouter>
+      </BrowserRouter>
     </div>
   );
 }
