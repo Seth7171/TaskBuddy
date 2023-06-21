@@ -9,6 +9,7 @@ const TaskForm = () => {
     const [title, setTitle] = useState('')
     const [note, setNote] = useState('')
     const [deadline, setDeadline] = useState('')
+    const [type, setType] = useState('');
     const [error, setError] = useState(null)
     const [emptyFields, setEmptyFields] = useState([])
 
@@ -20,7 +21,7 @@ const TaskForm = () => {
             return
         }
 
-        const task = { title, note, deadline }
+        const task = { title, note, deadline, type }
 
         const response = await fetch('/api/tasks', {
             method: 'POST',
@@ -42,6 +43,7 @@ const TaskForm = () => {
             setTitle('')
             setNote('')
             setDeadline('')
+            setType('')
             setError(null)
             setEmptyFields([])
             console.log('new task added', json)
@@ -77,6 +79,19 @@ const TaskForm = () => {
                 value={deadline}
                 className={emptyFields.includes('deadline') ? 'error' : ''}
             />
+            
+            <label>Type:</label>
+            <select
+                value={type}
+                onChange={(e) => setType(e.target.value)}
+                className={emptyFields.includes("type") ? "error" : ''}
+            >
+                <option value="">Select a type</option>
+                <option value="personal">Personal</option>
+                <option value="work">Work</option>
+                <option value="home">Home</option>
+                <option value="educational">Educational</option>
+            </select>
 
             <button>Add Task</button>
             {error && <div className="error">{error}</div>}

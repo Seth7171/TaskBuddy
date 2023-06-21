@@ -15,6 +15,11 @@ const taskSchema = new Schema({
         type: Date,
         required: false
     },
+    type: {
+        type: String,
+        enum: ["personal", "work", "home", "educational"],
+        required: true
+    },
     user_id: {
         type: String,
         required: true

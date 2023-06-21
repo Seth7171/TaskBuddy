@@ -1,3 +1,4 @@
+
 import { useTasksContext } from "../hooks/useTasksContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { format } from "date-fns";
@@ -21,6 +22,8 @@ const TaskDetails = ({ task }) => {
     if (response.ok) {
       dispatch({ type: "DELETE_TASK", payload: json });
     }
+
+
   };
 
   const formattedDeadline = format(new Date(task.deadline), "MMMM dd, yyyy");
@@ -33,12 +36,16 @@ const TaskDetails = ({ task }) => {
         {task.note}
       </p>
       <p>
+        <strong>Type: </strong>
+        {task.type}
+      </p>
+      <p>
         <strong>Deadline: </strong>
         {formattedDeadline}
       </p>
-      <span className="material-symbols-outlined" onClick={handleClick}>
-        delete
-      </span>
+        <span className="material-symbols-outlined" onClick={handleClick}>
+          radio_button_unchecked
+        </span>
     </div>
   );
 };

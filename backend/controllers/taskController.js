@@ -28,7 +28,7 @@ const getTask = async (req, res) => {
 
 // create new task
 const createTask = async (req, res) => {
-    const { title, note, deadline } = req.body;
+    const { title, note, deadline, type } = req.body;
   
     let emptyFields = [];
     if (!title) {
@@ -41,10 +41,13 @@ const createTask = async (req, res) => {
     if (emptyFields.length > 0) {
       return res.status(400).json({ error: 'please fill in all the fields', emptyFields });
     }
+    if (!type) {
+        emptyFields.push('type');
+    }
     // add doc to db
     try {
       const user_id = req.user._id;
-      const task = await Task.create({ title, note, deadline, user_id });
+      const task = await Task.create({ title, note, deadline, type, user_id });
       res.status(200).json(task);
     } catch (error) {
       res.status(400).json({ error: error.message });

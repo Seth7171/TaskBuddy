@@ -37,7 +37,7 @@ header .container {
   background-color: #f1f1f1;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   animation: smokeFlowAnimation 10s linear infinite;
-  background-image: url('C:\Users\NitMa\Downloads\smoke.png'); /* Replace with your smoke pattern image */
+  /*background-image: url('C:\Users\NitMa\Downloads\smoke.png'); /* Replace with your smoke pattern image */
   animation: smokeFlowAnimation 200s linear infinite;
 }
 
