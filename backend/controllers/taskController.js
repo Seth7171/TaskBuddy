@@ -41,9 +41,12 @@ const createTask = async (req, res) => {
     if (emptyFields.length > 0) {
       return res.status(400).json({ error: 'please fill in all the fields', emptyFields });
     }
-    if (!type) {
-        emptyFields.push('type');
+    // Check if type is equal to an empty string
+    if (!type || type === "") {
+      emptyFields.push('type');
+      return res.status(400).json({ error: 'please select a type', emptyFields });
     }
+  
     // add doc to db
     try {
       const user_id = req.user._id;
@@ -52,7 +55,8 @@ const createTask = async (req, res) => {
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
-}
+  };
+  
 
 // delete a task
 const deleteTask = async (req, res) => {

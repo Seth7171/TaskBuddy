@@ -118,10 +118,14 @@ header a:active {
 }
 
 /* new task form */
-label, input {
+label,
+input,
+select {
   display: block;
 }
-input {
+
+input,
+select {
   padding: 10px;
   margin-top: 10px;
   margin-bottom: 20px;
@@ -130,6 +134,7 @@ input {
   border-radius: 4px;
   box-sizing: border-box;
 }
+
 div.error {
   padding: 10px;
   background: #ffefef;
@@ -138,9 +143,12 @@ div.error {
   border-radius: 4px;
   margin: 20px 0;
 }
-input.error {
+
+input.error,
+select.error {
   border: 1px solid var(--error);
 }
+
 
 /* navbar */
 nav {

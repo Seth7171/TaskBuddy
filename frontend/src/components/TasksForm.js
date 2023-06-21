@@ -82,6 +82,7 @@ const TaskForm = () => {
             
             <label>Type:</label>
             <select
+                type="text"
                 value={type}
                 onChange={(e) => setType(e.target.value)}
                 className={emptyFields.includes("type") ? "error" : ''}
