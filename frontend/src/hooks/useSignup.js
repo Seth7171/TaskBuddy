@@ -10,7 +10,7 @@ export const useSignup = () => {
     setIsLoading(true);
     setError(null);
 
-    const userData = { email, password, fullName, age }; // Add fullName and age to the user data
+    const userData = { email, password, fullName};
 
     const response = await fetch('/api/user/signup', {
       method: 'POST',

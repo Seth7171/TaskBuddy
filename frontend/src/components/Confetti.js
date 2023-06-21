@@ -27,7 +27,7 @@ export default function Confetti() {
     });
 
     makeShot(0.2, {
-      spread: 60
+      spread: 160
     });
 
     makeShot(0.35, {

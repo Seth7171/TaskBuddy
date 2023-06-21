@@ -17,22 +17,12 @@ const userSchema = new Schema({
   fullName: {
     type: String,
     required: true
-  },
-  age: {
-    type: Number,
-    required: true,
-    validate: {
-      validator: (value) => {
-        return validator.isInt(String(value), { min: 1, max: 120 });
-      },
-      message: 'Age must be a number between 1 and 120'
-    }
   }
 });
 
 // static signup method
-userSchema.statics.signup = async function (email, password, fullName, age) {
-  if (!email || !password || !fullName || !age) { // Check if all fields are filled
+userSchema.statics.signup = async function (email, password, fullName) {
+  if (!email || !password || !fullName) { // Check if all fields are filled
     throw Error("All fields must be filled");
   }
 
@@ -53,7 +43,7 @@ userSchema.statics.signup = async function (email, password, fullName, age) {
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, salt);
 
-  const user = await this.create({ email, password: hash, fullName, age });
+  const user = await this.create({ email, password: hash, fullName });
 
   return user;
 }
