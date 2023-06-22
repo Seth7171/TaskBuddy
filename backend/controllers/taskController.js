@@ -28,13 +28,12 @@ const getTask = async (req, res) => {
 
 // create new task
 const createTask = async (req, res) => {
-    const { title, note, deadline, type } = req.body;
+    const { title, note, deadline, type, priority } = req.body;
   
     let emptyFields = [];
     if (!title) {
       emptyFields.push('title');
     }
-    // Remove the check for the note field
     if (!deadline) {
       emptyFields.push('deadline');
     }
@@ -46,11 +45,17 @@ const createTask = async (req, res) => {
       emptyFields.push('type');
       return res.status(400).json({ error: 'please select a type', emptyFields });
     }
+
+    // Check if priority is equal to an empty string
+    if (!priority || priority === "") {
+      emptyFields.push('priority');
+      return res.status(400).json({ error: 'please select a priority', emptyFields });
+    }
   
     // add doc to db
     try {
       const user_id = req.user._id;
-      const task = await Task.create({ title, note, deadline, type, user_id });
+      const task = await Task.create({ title, note, deadline, type, priority, user_id });
       res.status(200).json(task);
     } catch (error) {
       res.status(400).json({ error: error.message });

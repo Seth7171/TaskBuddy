@@ -55,6 +55,10 @@ const TaskDetails = ({ task }) => {
             <strong>Deadline: </strong>
             {formattedDeadline}
           </p>
+          <p>
+            <strong>Priority: </strong>
+            {task.priority}
+          </p>
           <span className="material-symbols-outlined" onClick={handleRadioButtonClick}>
             radio_button_unchecked
           </span>

@@ -20,6 +20,11 @@ const taskSchema = new Schema({
         enum: ["personal", "work", "home", "educational"],
         required: true
     },
+    priority: {
+        type: String,
+        enum: ["none", "low", "medium", "high"],
+        required: false
+    },
     user_id: {
         type: String,
         required: true

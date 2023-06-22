@@ -10,6 +10,7 @@ const TaskForm = () => {
     const [note, setNote] = useState('')
     const [deadline, setDeadline] = useState('')
     const [type, setType] = useState('');
+    const [priority, setPriority] = useState('')
     const [error, setError] = useState(null)
     const [emptyFields, setEmptyFields] = useState([])
 
@@ -21,7 +22,7 @@ const TaskForm = () => {
             return
         }
 
-        const task = { title, note, deadline, type }
+        const task = { title, note, deadline, type, priority }
 
         const response = await fetch('/api/tasks', {
             method: 'POST',
@@ -44,6 +45,7 @@ const TaskForm = () => {
             setNote('')
             setDeadline('')
             setType('')
+            setPriority('')
             setError(null)
             setEmptyFields([])
             console.log('new task added', json)
@@ -92,6 +94,20 @@ const TaskForm = () => {
                 <option value="work">Work</option>
                 <option value="home">Home</option>
                 <option value="educational">Educational</option>
+            </select>
+
+            <label>Priority (Optional):</label>
+            <select
+                type="text"
+                value={priority}
+                onChange={(e) => setPriority(e.target.value)}
+                className={emptyFields.includes("priority") ? "error" : ''}
+            >
+                <option value="none">Select a Priority</option>
+                <option value="none">None</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
             </select>
 
             <button>Add Task</button>
