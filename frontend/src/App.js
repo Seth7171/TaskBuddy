@@ -4,7 +4,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './index.css';
 
 import MainPage from './pages/Main';
-import Home from './pages/Home';
+import MyTasks from './pages/MyTasks';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -29,11 +29,11 @@ function App() {
               }
             />
             <Route
-              path="/home"
+              path="/mytasks"
               element={
                 <TransitionGroup>
                   <CSSTransition key={window.location.pathname} classNames="fade" timeout={600}>
-                    {user ? <Home /> : <Navigate to="/" />}
+                    {user ? <MyTasks /> : <Navigate to="/" />}
                   </CSSTransition>
                 </TransitionGroup>
               }
@@ -43,7 +43,7 @@ function App() {
               element={
                 <TransitionGroup>
                   <CSSTransition key="login" classNames="flip" timeout={500}>
-                    {!user ? <Login /> : <Navigate to="/home" />}
+                    {!user ? <Login /> : <Navigate to="/mytasks" />}
                   </CSSTransition>
                 </TransitionGroup>
               }
@@ -53,7 +53,7 @@ function App() {
               element={
                 <TransitionGroup>
                   <CSSTransition key="signup" classNames="flip" timeout={500}>
-                    {!user ? <Signup /> : <Navigate to="/home" />}
+                    {!user ? <Signup /> : <Navigate to="/mytasks" />}
                   </CSSTransition>
                 </TransitionGroup>
               }
