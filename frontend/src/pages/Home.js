@@ -5,6 +5,7 @@ import { useAuthContext } from "../hooks/useAuthContext"
 //components
 import TaskDetails from '../components/TaskDetails'
 import TaskFrom from "../components/TasksForm"
+import NoTasksImage from "../assets/no-tasks-image.png"; // Import the image
 
 const Home = () => {
     const {tasks, dispatch} = useTasksContext()
@@ -31,14 +32,20 @@ const Home = () => {
 
     return (
         <div className="home">
-            <div className="tasks">
-                {tasks && tasks.map((task) => (
-                    <TaskDetails key = {task._id} task={task}/>
-                ))}
-            </div>
-            <TaskFrom />
+          <div className="tasks">
+            {tasks && tasks.length > 0 ? (
+              tasks.map((task) => (
+                <TaskDetails key={task._id} task={task} />
+              ))
+            ) : (
+              <div className="no-tasks">
+                <img src={NoTasksImage} alt="No tasks" />
+              </div>
+            )}
+          </div>
+          <TaskFrom />
         </div>
-    )
-}
+      );
+    };
 
 export default Home

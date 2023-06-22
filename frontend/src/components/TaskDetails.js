@@ -32,7 +32,7 @@ const TaskDetails = ({ task }) => {
     setIsVisible(true); // Set isVisible to true when the radio button is clicked
     setTimeout(() => {
       handleClick(); // Call handleClick to delete the task
-    }, 5000);
+    }, 3500);
   };
 
   const formattedDeadline = format(new Date(task.deadline), "MMMM dd, yyyy");
