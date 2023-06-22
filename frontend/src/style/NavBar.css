@@ -1,3 +1,160 @@
+/* google font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+
+/* layout */
+:root {
+  --primary: #1aac83;
+  --error: #e7195a;
+}
+body {
+  background: #f1f1f1;
+  margin: 0;
+  font-family: "Poppins";
+}
+header {
+  background: #fff;
+}
+
+@keyframes smokeFlowAnimation {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+header .container {
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f1f1f1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: smokeFlowAnimation 10s linear infinite;
+  background-image: url('../assets/smoke.png');
+  animation: smokeFlowAnimation 200s linear infinite;
+}
+
+/* Hover effect for header links */
+header a {
+  position: relative;
+  color: #333; /* Initial color */
+  transition: color 0.3s ease;
+}
+
+header a::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #ff00ff; /* Vibrant pink color */
+  transform: scaleX(0); /* Initially hidden */
+  transition: transform 0.3s ease;
+}
+
+header a:hover {
+  color: #ff00ff; /* Change the color to vibrant pink on hover */
+}
+
+header a:hover::before {
+  transform: scaleX(1); /* Expand the line on hover */
+}
+
+
+/* Add a subtle box shadow effect on header links when focused or active */
+header a:focus,
+header a:active {
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.pages{
+  max-width: 1400px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+
+/* navbar */
+nav {
+  display: flex;
+  align-items: center;
+}
+nav a {
+  margin-left: 10px;
+}
+
+/* Styling for the bubbly button */
+nav button,form button {
+  background: #fff;
+  color: #f97474; 
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-family: "Poppins";
+  cursor: pointer;
+  font-size: 1em;
+  margin-left: 10px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: transform 0.3s ease;
+  box-shadow: 0 0 0 2px #f97474; /* Add a frame with a box shadow */
+}
+
+form button{
+  color: #12de27; 
+  box-shadow: 0 0 0 2px #12de27; /* Add a frame with a box shadow */
+}
+
+/* Pseudo-element for the button's bubble effect */
+nav button::before,
+form button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  background-color: #f97474; 
+  border-radius: 50%;
+  opacity: 0.7;
+  z-index: -1;
+  transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+}
+
+form button::before {
+  background-color: #12de27; 
+}
+
+/* Bubble effect on hover */
+nav button:hover,
+form button:hover{
+  color: #ffffff; 
+}
+
+/* Bubble effect on hover */
+nav button:hover::before,
+form button:hover::before{
+  width: 200%; /* Expand the bubble's width */
+  height: 200%; /* Expand the bubble's height */
+}
+
+/* Button click effect */
+nav button:active,
+form button:active {
+  transform: scale(0.9); /* Decrease the button size on click */
+}
+
+
+
 .burger-menu {
     width: 30px;
     height: 20px;
@@ -25,3 +182,95 @@
   .open ~ .line:nth-child(3) {
     transform: rotate(-45deg);
   }
+  
+  .sidebar {
+    position: fixed;
+    top: 110px;
+    left: -250px; /* Initially hide the sidebar off-screen */
+    width: 250px; /* Adjust the width as per your preference */
+    height: 100%; /* Set the sidebar height to cover the entire screen */
+    background-color: #f2f2f2;
+    transition: transform 0.3s ease;
+    transform: translateX(0); /* Reset the initial transform */
+    z-index: 100;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add the box-shadow property */
+  }
+  
+  .open ~ .sidebar {
+    transform: translateX(100%); /* Slide the sidebar into view */
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+  
+  .sidebar ul li {
+    margin-bottom: 10px;
+  }
+  
+  .sidebar ul li a {
+    display: block;
+    padding: 10px;
+    color: #000;
+    text-decoration: none;
+  }
+  
+  .sidebar ul li a:hover {
+    background-color: #ddd;
+  }
+
+/* Add a media query for mobile devices */
+@media (max-width: 767px) {
+    header .container {
+      max-width: 767px;
+      flex-wrap: wrap;
+      padding: 10px;
+    }
+
+    .burger-menu {
+      margin-right: 10px;
+    }
+  
+    nav {
+      margin-top: 10px;
+    }
+  
+    .title {
+      font-size: 14px;
+    }
+
+    nav a {
+      font-size: 14px;
+    }
+
+    .nameandlogout{
+      font-size: 14px;
+      max-width: 50px;
+      max-height: auto;
+    }
+
+    .logoutbutton{
+      font-size: 10px;
+    }
+  
+    .sidebar {
+      top: 100px;
+      left: -250px;
+      width: 250px;
+      height: calc(100% - 60px);
+    }
+  
+    .open ~ .sidebar {
+      transform: translateX(250px);
+    }
+
+  
+    .pages {
+      padding: 10px;
+    }
+  }
+  
+  
+  

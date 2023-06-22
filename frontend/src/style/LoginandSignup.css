@@ -1,4 +1,46 @@
-/* auth forms */
+label,
+input,
+select {
+  display: block;
+}
+
+input,
+select {
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+div.error {
+  padding: 10px;
+  background: #ffefef;
+  border: 1px solid var(--error);
+  color: var(--error);
+  border-radius: 4px;
+  margin: 20px 0;
+}
+
+input.error,
+select.error {
+  border: 1px solid var(--error);
+}
+
+input,
+select {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+div.error {
+  padding: 8px;
+  margin: 15px 0;
+  font-size: 12px;
+}
+
 form.signup,
 form.login {
   max-width: 400px;
@@ -88,4 +130,52 @@ form.login input.error {
 .fade-exit-active {
   opacity: 0;
   transition: opacity 500ms ease-out;
+}
+
+/* Add a media query for mobile devices */
+@media (max-width: 767px) {
+  form.signup,
+  form.login {
+    max-width: 250px;
+    margin: 10px auto;
+    padding: 5px;
+  }
+
+  form.signup h3,
+  form.login h3 {
+    margin-bottom: 5px;
+    font-size: 18px;
+  }
+
+  form.signup label,
+  form.login label {
+    margin-bottom: 3px;
+    font-size: 14px;
+  }
+
+  form.signup button,
+  form.login button {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  form.signup .error,
+  form.login .error {
+    margin-top: 3px;
+    font-size: 0.8em;
+  }
+
+  input,
+  select {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+  div.error {
+    padding: 8px;
+    margin: 15px 0;
+    font-size: 12px;
+  }
+  
 }

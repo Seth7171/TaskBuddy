@@ -1,0 +1,59 @@
+/* new task form */
+label,
+input,
+select {
+  display: block;
+}
+
+input,
+select {
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+div.error {
+  padding: 10px;
+  background: #ffefef;
+  border: 1px solid var(--error);
+  color: var(--error);
+  border-radius: 4px;
+  margin: 20px 0;
+}
+
+input.error,
+select.error {
+  border: 1px solid var(--error);
+}
+
+input,
+select {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+div.error {
+  padding: 8px;
+  margin: 15px 0;
+  font-size: 12px;
+}
+
+/* Add a media query for mobile devices */
+@media (max-width: 767px) {
+    input,
+    select {
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+  
+    div.error {
+      padding: 8px;
+      margin: 15px 0;
+      font-size: 12px;
+    }
+  }
+

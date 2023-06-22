@@ -41,3 +41,34 @@
     border-radius: 50%;
     color: #333;
   }
+
+  /* Add a media query for mobile devices */
+@media (max-width: 767px) {
+  
+  .mytasks {
+    gap: 10px; /* Reduce the gap further for smaller screens */
+  }
+
+  .no-tasks {
+    max-width: 100%; /* Adjust the maximum width to fit the screen */
+  }
+
+  .task-details {
+    margin: 10px auto; /* Reduce the margin for smaller screens */
+    padding: 10px; /* Reduce the padding for smaller screens */
+  }
+
+  .task-details h4 {
+    font-size: 1em; /* Adjust the font size for smaller screens */
+  }
+
+  .task-details p {
+    font-size: 0.8em; /* Adjust the font size for smaller screens */
+  }
+
+  .task-details span {
+    top: 10px; /* Adjust the position for smaller screens */
+    right: 10px; /* Adjust the position for smaller screens */
+    padding: 4px; /* Adjust the padding for smaller screens */
+  }
+}

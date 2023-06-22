@@ -25,13 +25,10 @@ const Navbar = () => {
                     <div className={`line ${isSidebarOpen ? 'open' : ''}`}></div>
                     <div className={`line ${isSidebarOpen ? 'open' : ''}`}></div>
                     {isSidebarOpen && (
-                    <div className="sidebar">
-                        <div className={`line ${isSidebarOpen ? 'open' : ''}`}></div>
-                        <div className={`line ${isSidebarOpen ? 'open' : ''}`}></div>
-                        <div className={`line ${isSidebarOpen ? 'open' : ''}`}></div>
+                    <div className="sidebar">                   
                         <ul>
                         <li>
-                            <Link to="/my-tasks">My Tasks</Link>
+                            <Link to="/mytasks">My Tasks</Link>
                         </li>
                         <li>
                             <Link to="/completed-tasks">Completed Tasks</Link>
@@ -41,14 +38,14 @@ const Navbar = () => {
                     </div>
                     )}
                 </div>
-                <Link to = "/">
-                    <h1>Task Buddy</h1>
+                <Link className="title" to = "/">
+                    <h1 >Task Buddy</h1>
                 </Link>
                 <nav>
                     {user && (
-                    <div>
+                    <div className="nameandlogout">
                         <span>{user.fullName || user.email}</span>
-                        <button onClick={handleClick}>Log out</button>
+                        <button className="logoutbutton" onClick={handleClick}>Log out</button>
                     </div>
                     )}
                     {!user && (

@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthContext } from "./hooks/useAuthContext";
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import './index.css';
 
 import MainPage from './pages/Main';
 import MyTasks from './pages/MyTasks';
