@@ -88,6 +88,15 @@ header a:active {
   grid-template-columns: 3fr 1fr;
   gap: 100px;
 }
+
+.no-tasks {
+  margin: 20px auto;
+  padding: 20px auto;
+  position: relative;
+  max-width: 300px;
+}
+
+
 .task-details {
   background: #fff;
   border-radius: 4px;
