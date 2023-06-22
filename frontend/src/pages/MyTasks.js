@@ -7,7 +7,7 @@ import TaskDetails from '../components/TaskDetails'
 import TaskFrom from "../components/TasksForm"
 import NoTasksImage from "../assets/no-tasks-image.png"; // Import the image
 
-const Home = () => {
+const MyTasks = () => {
     const {tasks, dispatch} = useTasksContext()
     const {user}= useAuthContext()
 
@@ -31,7 +31,7 @@ const Home = () => {
     }, [dispatch,user])
 
     return (
-        <div className="home">
+        <div className="mytasks">
           <div className="tasks">
             {tasks && tasks.length > 0 ? (
               tasks.map((task) => (
@@ -48,4 +48,4 @@ const Home = () => {
       );
     };
 
-export default Home
+export default MyTasks
