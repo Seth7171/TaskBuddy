@@ -20,6 +20,7 @@ const Navbar = () => {
     return (
         <header>
             <div className="container">
+                {user && (
                 <div className="burger-menu" onClick={toggleSidebar}>
                     <div className={`line ${isSidebarOpen ? 'open' : ''}`}></div>
                     <div className={`line ${isSidebarOpen ? 'open' : ''}`}></div>
@@ -38,6 +39,7 @@ const Navbar = () => {
                     </div>
                     )}
                 </div>
+                )}
                 <Link className="title" to = "/">
                     <h1 >Task Buddy</h1>
                 </Link>

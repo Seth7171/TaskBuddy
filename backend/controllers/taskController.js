@@ -34,22 +34,8 @@ const createTask = async (req, res) => {
     if (!title) {
       emptyFields.push('title');
     }
-    if (!deadline) {
-      emptyFields.push('deadline');
-    }
     if (emptyFields.length > 0) {
       return res.status(400).json({ error: 'please fill in all the fields', emptyFields });
-    }
-    // Check if type is equal to an empty string
-    if (!type || type === "") {
-      emptyFields.push('type');
-      return res.status(400).json({ error: 'please select a type', emptyFields });
-    }
-
-    // Check if priority is equal to an empty string
-    if (!priority || priority === "") {
-      emptyFields.push('priority');
-      return res.status(400).json({ error: 'please select a priority', emptyFields });
     }
   
     // add doc to db

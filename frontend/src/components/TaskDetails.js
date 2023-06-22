@@ -1,8 +1,8 @@
 import { useTasksContext } from "../hooks/useTasksContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { format } from "date-fns";
-import { useState } from 'react';
-import Confetti from './Confetti';
+import { useState } from "react";
+import Confetti from "./Confetti";
 
 const TaskDetails = ({ task }) => {
   const { dispatch } = useTasksContext();
@@ -35,7 +35,9 @@ const TaskDetails = ({ task }) => {
     }, 3500);
   };
 
-  const formattedDeadline = format(new Date(task.deadline), "MMMM dd, yyyy");
+  const formattedDeadline = task.deadline
+    ? format(new Date(task.deadline), "MMMM dd, yyyy")
+    : "";
 
   return (
     <>
@@ -43,22 +45,30 @@ const TaskDetails = ({ task }) => {
       {!isVisible && (
         <div className="task-details">
           <h4>{task.title}</h4>
-          <p>
-            <strong>Note: </strong>
-            {task.note}
-          </p>
-          <p>
-            <strong>Type: </strong>
-            {task.type}
-          </p>
-          <p>
-            <strong>Deadline: </strong>
-            {formattedDeadline}
-          </p>
-          <p>
-            <strong>Priority: </strong>
-            {task.priority}
-          </p>
+          {task.note && (
+            <p>
+              <strong>Note: </strong>
+              {task.note}
+            </p>
+          )}
+          {task.type && (
+            <p>
+              <strong>Type: </strong>
+              {task.type}
+            </p>
+          )}
+          {task.deadline && (
+            <p>
+              <strong>Deadline: </strong>
+              {formattedDeadline}
+            </p>
+          )}
+          {task.priority && (
+            <p>
+              <strong>Priority: </strong>
+              {task.priority}
+            </p>
+          )}
           <span className="material-symbols-outlined" onClick={handleRadioButtonClick}>
             radio_button_unchecked
           </span>

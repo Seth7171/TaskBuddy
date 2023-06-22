@@ -58,7 +58,7 @@ const TaskForm = () => {
         <form className="create" onSubmit={handleSubmit}>
             <h3>Add a New Task</h3>
 
-            <label>Task Title:</label>
+            <label>Task Title*:</label>
             <input
                 type="text"
                 onChange={(e) => setTitle(e.target.value)}
@@ -66,7 +66,7 @@ const TaskForm = () => {
                 className={emptyFields.includes('title') ? 'error' : ''}
             />
 
-            <label>Note (Optional):</label>
+            <label>Note:</label>
             <input
                 type="text"
                 onChange={(e) => setNote(e.target.value)}
@@ -96,7 +96,7 @@ const TaskForm = () => {
                 <option value="educational">Educational</option>
             </select>
 
-            <label>Priority (Optional):</label>
+            <label>Priority:</label>
             <select
                 type="text"
                 value={priority}

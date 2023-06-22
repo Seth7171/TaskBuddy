@@ -17,12 +17,12 @@ const taskSchema = new Schema({
     },
     type: {
         type: String,
-        enum: ["personal", "work", "home", "educational"],
-        required: true
+        enum: ["","personal", "work", "home", "educational"],
+        required: false
     },
     priority: {
         type: String,
-        enum: ["none", "low", "medium", "high"],
+        enum: ["","none", "low", "medium", "high"],
         required: false
     },
     user_id: {
