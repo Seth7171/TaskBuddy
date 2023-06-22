@@ -1,0 +1,27 @@
+.burger-menu {
+    width: 30px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  
+  .line {
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+    transition: all 0.3s ease;
+  }
+  
+  .open {
+    transform: rotate(45deg);
+  }
+  
+  .open ~ .line:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .open ~ .line:nth-child(3) {
+    transform: rotate(-45deg);
+  }

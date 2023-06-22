@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useTasksContext } from "../hooks/useTasksContext"
 import { useAuthContext } from "../hooks/useAuthContext"
+import '../style/MyTasks.css';
 
 //components
 import TaskDetails from '../components/TaskDetails'
