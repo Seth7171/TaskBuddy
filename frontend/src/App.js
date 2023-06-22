@@ -3,6 +3,7 @@ import { useAuthContext } from "./hooks/useAuthContext";
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './index.css';
 
+import MainPage from './pages/Main';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
@@ -22,7 +23,17 @@ function App() {
               element={
                 <TransitionGroup>
                   <CSSTransition key={window.location.pathname} classNames="fade" timeout={600}>
-                    {user ? <Home /> : <Navigate to="/login" />}
+                    <MainPage />
+                  </CSSTransition>
+                </TransitionGroup>
+              }
+            />
+            <Route
+              path="/home"
+              element={
+                <TransitionGroup>
+                  <CSSTransition key={window.location.pathname} classNames="fade" timeout={600}>
+                    {user ? <Home /> : <Navigate to="/" />}
                   </CSSTransition>
                 </TransitionGroup>
               }
@@ -32,7 +43,7 @@ function App() {
               element={
                 <TransitionGroup>
                   <CSSTransition key="login" classNames="flip" timeout={500}>
-                    {!user ? <Login /> : <Navigate to="/" />}
+                    {!user ? <Login /> : <Navigate to="/home" />}
                   </CSSTransition>
                 </TransitionGroup>
               }
@@ -42,7 +53,7 @@ function App() {
               element={
                 <TransitionGroup>
                   <CSSTransition key="signup" classNames="flip" timeout={500}>
-                    {!user ? <Signup /> : <Navigate to="/" />}
+                    {!user ? <Signup /> : <Navigate to="/home" />}
                   </CSSTransition>
                 </TransitionGroup>
               }
@@ -50,6 +61,7 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
+      
     </div>
   );
 }
