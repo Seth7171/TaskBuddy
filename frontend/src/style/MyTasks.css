@@ -16,6 +16,11 @@
   transition: background-color 0.3s ease;
 }
 
+.tasks-container {
+  overflow-y: scroll;
+  max-height: calc(100vh - 200px); /* Adjust the value based on your layout */
+}
+
 .task-details button:hover,
 .sort-bar-button:hover {
   background-color: #ddd;

@@ -72,14 +72,16 @@ const MyTasks = () => {
   return (
     <div className="mytasks">
 
-      <div className="tasks">
-        {tasks && tasks.length > 0 ? (
-          sortedTasks().map((task) => <TaskDetails key={task._id} task={task} />)
-        ) : (
-          <div className="no-tasks">
-            <img src={NoTasksImage} alt="No tasks" />
-          </div>
-        )}
+      <div className="tasks-container">
+        <div className="tasks">
+          {tasks && tasks.length > 0 ? (
+            sortedTasks().map((task) => <TaskDetails key={task._id} task={task} />)
+          ) : (
+            <div className="no-tasks">
+              <img src={NoTasksImage} alt="No tasks" />
+            </div>
+          )}
+        </div>
       </div>
       <div>
         <button className = "sort-bar-button" onClick={() => setShowSortOptions(!showSortOptions)}>
