@@ -120,13 +120,17 @@ const TaskDetails = ({ task }) => {
                   />
                 </p>
                 <p>
-                  <strong>Priority: </strong>
-                  <input
-                    type="text"
+                  <label>Priority:</label>
+                  <select
                     name="priority"
                     value={editedTask.priority}
                     onChange={handleChange}
-                  />
+                  >
+                    <option value="">Select a Priority</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                  </select>
                 </p>
                 <div className="edit-buttons">
                   <button onClick={handleSave}>Save</button>
