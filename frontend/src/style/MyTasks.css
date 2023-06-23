@@ -1,4 +1,6 @@
 /* MyTasksPage */
+
+.task-details button,
 .sort-bar-button {
   height: 25px;
   background-color: #f1f1f1;
@@ -14,10 +16,12 @@
   transition: background-color 0.3s ease;
 }
 
+.task-details button:hover,
 .sort-bar-button:hover {
   background-color: #ddd;
 }
 
+.task-details button:active,
 .sort-bar-button:active {
   transform: scale(0.9); /* Decrease the button size on click */
 }
