@@ -127,9 +127,9 @@ const TaskDetails = ({ task }) => {
                     onChange={handleChange}
                   >
                     <option value="">Select a Priority</option>
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
+                    <option value="low">Low &#x1F7E9;</option>
+                    <option value="medium">Medium &#x1F7E8;</option>
+                    <option value="high">High &#x1F534;</option>
                   </select>
                 </p>
                 <div className="edit-buttons">
