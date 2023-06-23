@@ -18,8 +18,26 @@
 
 .tasks-container {
   overflow-y: scroll;
-  max-height: calc(100vh - 200px); /* Adjust the value based on your layout */
+  max-height: calc(100vh - 200px); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  position: relative;
 }
+
+.tasks-container::-webkit-scrollbar {
+  width: 8px; 
+  background-color: #f1f1f1; 
+}
+
+.tasks-container::-webkit-scrollbar-thumb {
+  background-color: #888; 
+  border-radius: 4px; 
+}
+
+.tasks-container::-webkit-scrollbar-track {
+  background-color: #f1f1f1; 
+}
+
 
 .task-details button:hover,
 .sort-bar-button:hover {
