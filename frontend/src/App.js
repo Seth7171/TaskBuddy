@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthContext } from "./hooks/useAuthContext";
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-
+import "./style/App.css";
 import MainPage from './pages/Main';
 import MyTasks from './pages/MyTasks';
 import Navbar from './components/Navbar';
