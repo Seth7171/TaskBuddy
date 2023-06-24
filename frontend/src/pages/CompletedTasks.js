@@ -86,7 +86,7 @@ const CompletedTasks = () => {
           </div>
         </div>
       )}
-      {!sortedTasks().filter((task) => task.isCompleted).length == 0 && (
+      { (
         <div>
           <button className="sort-bar-button" onClick={() => setShowSortOptions(!showSortOptions)}>
             {showSortOptions ? "Hide Sort Options" : "Show Sort Options"}

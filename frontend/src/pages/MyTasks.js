@@ -87,7 +87,7 @@ const MyTasks = () => {
       )}
          
       <div>
-      {tasks && sortedTasks().filter((task) => !task.isCompleted).length > 0 && <button className = "sort-bar-button" onClick={() => setShowSortOptions(!showSortOptions)}>
+      {<button className = "sort-bar-button" onClick={() => setShowSortOptions(!showSortOptions)}>
           {showSortOptions ? "Hide Sort Options" : "Show Sort Options"}
         </button>}
         {showSortOptions && (
