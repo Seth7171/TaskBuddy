@@ -13,7 +13,7 @@ const TaskDetails = ({ task }) => {
   const [clickCoordinates, setClickCoordinates] = useState({ x: 0, y: 0 });
   const [zIndex, setZIndex] = useState(0);
 
-  const handleClick = async () => {
+  const handleDelete = async () => {
     if (!user) {
       return;
     }
@@ -29,6 +29,34 @@ const TaskDetails = ({ task }) => {
 
     if (response.ok) {
       dispatch({ type: "DELETE_TASK", payload: json });
+    }
+  };
+
+  const handleClick = async () => {
+    const editedTask = {
+      ...task,
+      isCompleted: true, // Modify the isCompleted attribute to true
+    };
+  
+    try {
+      const response = await fetch('/api/tasks/' + task._id, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify(editedTask), // Send the updated task details
+      });
+  
+      const json = await response.json();
+  
+      if (response.ok) {
+        dispatch({ type: 'UPDATE_TASK', payload: json });
+      } else {
+        console.error('Failed to update task:', json.error);
+      }
+    } catch (error) {
+      console.error('Failed to update task:', error);
     }
   };
 
@@ -168,11 +196,12 @@ const TaskDetails = ({ task }) => {
                   <strong>Priority: </strong>
                   {task.priority}
                 </p>
-                <span className="material-symbols-outlined" onClick={handleRadioButtonClick}>
+                {!task.isCompleted && (<span className="material-symbols-outlined" onClick={handleRadioButtonClick}>
                     radio_button_unchecked
-                </span>
+                </span>)}
                 <div className="edit-buttons">
                     <button onClick={handleEdit}>Edit</button>
+                    {task.isCompleted && (<button onClick={handleDelete}>Delete</button>)}
                 </div>
               </>
             )}

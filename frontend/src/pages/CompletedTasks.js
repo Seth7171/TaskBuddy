@@ -8,7 +8,7 @@ import TaskDetails from "../components/TaskDetails";
 import TaskFrom from "../components/TasksForm";
 import NoTasksImage from "../assets/no-tasks-image.png"; // Import the image
 
-const MyTasks = () => {
+const CompletedTasks = () => {
   const { tasks, dispatch } = useTasksContext();
   const { user } = useAuthContext();
   const [showSortOptions, setShowSortOptions] = useState(false); // State for controlling the visibility of sort options
@@ -75,7 +75,7 @@ const MyTasks = () => {
       <div className="tasks-container">
         <div className="tasks">
           {tasks && tasks.length > 0 ? (
-            sortedTasks().filter((task) => !task.isCompleted).map((task) => <TaskDetails key={task._id} task={task} />)
+            sortedTasks().filter((task) => task.isCompleted).map((task) => <TaskDetails key={task._id} task={task} />)
           ) : (
             <div className="no-tasks">
               <img src={NoTasksImage} alt="No tasks" />
@@ -135,4 +135,4 @@ const MyTasks = () => {
   );
 };
 
-export default MyTasks;
+export default CompletedTasks;

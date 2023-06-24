@@ -4,6 +4,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import "./style/App.css";
 import MainPage from './pages/Main';
 import MyTasks from './pages/MyTasks';
+import CompletedTasks from './pages/CompletedTasks';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -33,6 +34,16 @@ function App() {
                 <TransitionGroup>
                   <CSSTransition key={window.location.pathname} classNames="fade" timeout={600}>
                     {user ? <MyTasks /> : <Navigate to="/" />}
+                  </CSSTransition>
+                </TransitionGroup>
+              }
+            />
+            <Route
+              path="/completed-tasks"
+              element={
+                <TransitionGroup>
+                  <CSSTransition key={window.location.pathname} classNames="fade" timeout={600}>
+                    {user ? <CompletedTasks /> : <Navigate to="/" />}
                   </CSSTransition>
                 </TransitionGroup>
               }

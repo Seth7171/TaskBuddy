@@ -25,6 +25,10 @@ const taskSchema = new Schema({
         enum: ["","none", "low", "medium", "high"],
         required: false
     },
+    isCompleted: {
+        type: Boolean,
+        default: false,
+    },
     user_id: {
         type: String,
         required: true
