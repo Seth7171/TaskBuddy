@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 
 import ReactCanvasConfetti from 'react-canvas-confetti';
 
-export default function Confetti({ clickCoordinates }) {
+export default function Confetti({ clickCoordinates, zIndex = 9999 }) {
   const refAnimationInstance = useRef(null);
 
   const getInstance = useCallback(instance => {
@@ -22,30 +22,50 @@ export default function Confetti({ clickCoordinates }) {
 
   const fire = useCallback(() => {
     makeShot(0.25, {
-      spread: 26,
-      startVelocity: 55
+      spread: 360,
+      startVelocity: 55,
+      shapes : [
+        'circle',
+        'square'
+      ]
     });
 
     makeShot(0.2, {
-      spread: 160
+      spread: 360,
+      shapes : [
+        'circle',
+        'square'
+      ]
     });
 
     makeShot(0.35, {
-      spread: 100,
+      spread: 360,
       decay: 0.91,
-      scalar: 0.8
+      scalar: 0.8,
+      shapes : [
+        'circle',
+        'square'
+      ]
     });
 
     makeShot(0.1, {
-      spread: 120,
+      spread: 360,
       startVelocity: 25,
       decay: 0.92,
-      scalar: 1.2
+      scalar: 1.2,
+      shapes : [
+        'circle',
+        'square'
+      ]
     });
 
     makeShot(0.1, {
-      spread: 120,
-      startVelocity: 45
+      spread: 360,
+      startVelocity: 45,
+      shapes : [
+        'circle',
+        'square'
+      ]
     });
   }, [makeShot]);
 
@@ -58,7 +78,8 @@ export default function Confetti({ clickCoordinates }) {
         width: '100%',
         height: '100%',
         top: 0,
-        left: 0
+        left: 0,
+        zIndex: zIndex
       }}
     />
   );
