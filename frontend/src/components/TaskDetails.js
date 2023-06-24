@@ -32,10 +32,38 @@ const TaskDetails = ({ task }) => {
     }
   };
 
-  const handleClick = async () => {
+  const handleUncheckClick = async () => {
     const editedTask = {
       ...task,
       isCompleted: true, // Modify the isCompleted attribute to true
+    };
+  
+    try {
+      const response = await fetch('/api/tasks/' + task._id, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify(editedTask), // Send the updated task details
+      });
+  
+      const json = await response.json();
+  
+      if (response.ok) {
+        dispatch({ type: 'UPDATE_TASK', payload: json });
+      } else {
+        console.error('Failed to update task:', json.error);
+      }
+    } catch (error) {
+      console.error('Failed to update task:', error);
+    }
+  };
+
+  const handlecheckClick = async () => {
+    const editedTask = {
+      ...task,
+      isCompleted: false, // Modify the isCompleted attribute to true
     };
   
     try {
@@ -91,7 +119,7 @@ const TaskDetails = ({ task }) => {
     setEditedTask({ ...editedTask, [e.target.name]: e.target.value }); // Update the edited task details
   };
 
-  const handleRadioButtonClick = (e) => {
+  const handleUncheckRadioButtonClick = (e) => {
     // Get the click coordinates relative to the window
     const { clientX, clientY } = e;
     const { top, left } = document.documentElement.getBoundingClientRect();
@@ -104,7 +132,7 @@ const TaskDetails = ({ task }) => {
     setZIndex((prevZIndex) => prevZIndex + 1); // Increment the zIndex value
 
     setTimeout(() => {
-      handleClick(); // Call handleClick to delete the task
+      handleUncheckClick(); // Call handleUncheckClick to edit the task
     }, 3500);
   };
 
@@ -198,8 +226,11 @@ const TaskDetails = ({ task }) => {
                   <strong>Priority: </strong>
                   {task.priority}
                 </p>
-                {!task.isCompleted && (<span className="material-symbols-outlined" onClick={handleRadioButtonClick}>
+                {!task.isCompleted && (<span className="material-symbols-outlined" onClick={handleUncheckRadioButtonClick}>
                     radio_button_unchecked
+                </span>)}
+                {task.isCompleted && (<span className="material-symbols-outlined" onClick={handlecheckClick}>
+                    radio_button_checked
                 </span>)}
                 <div className="edit-buttons">
                     <button onClick={handleEdit}>Edit</button>
