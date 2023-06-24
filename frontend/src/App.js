@@ -8,6 +8,7 @@ import CompletedTasks from './pages/CompletedTasks';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+// npm install react-scripts --save
 
 function App() {
   const { user } = useAuthContext();
