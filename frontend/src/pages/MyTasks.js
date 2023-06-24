@@ -72,21 +72,24 @@ const MyTasks = () => {
   return (
     <div className="mytasks">
 
-      <div className="tasks-container">
-        <div className="tasks">
-          {tasks && tasks.length > 0 ? (
-            sortedTasks().filter((task) => !task.isCompleted).map((task) => <TaskDetails key={task._id} task={task} />)
-          ) : (
-            <div className="no-tasks">
-              <img src={NoTasksImage} alt="No tasks" />
-            </div>
-          )}
+      {tasks && sortedTasks().filter((task) => !task.isCompleted).length > 0 ? (
+        <div className="tasks-container">
+          <div className="tasks">
+            {sortedTasks().filter((task) => !task.isCompleted).map((task) => (
+              <TaskDetails key={task._id} task={task} />
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="no-tasks">
+          <img src={NoTasksImage} alt="No tasks" />
+        </div>
+      )}
+         
       <div>
-        <button className = "sort-bar-button" onClick={() => setShowSortOptions(!showSortOptions)}>
+      {tasks && sortedTasks().filter((task) => !task.isCompleted).length > 0 && <button className = "sort-bar-button" onClick={() => setShowSortOptions(!showSortOptions)}>
           {showSortOptions ? "Hide Sort Options" : "Show Sort Options"}
-        </button>
+        </button>}
         {showSortOptions && (
           <div className="sort-options">
             <h3>Sort Menu</h3>
