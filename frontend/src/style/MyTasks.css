@@ -1,5 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@900&display=swap");
 
+
+.error-input {
+  border: 1px solid red;
+  color: red;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+
 /* MyTasksPage */
 
 .task-details button,

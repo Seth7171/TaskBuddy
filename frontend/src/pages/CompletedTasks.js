@@ -68,10 +68,11 @@ const CompletedTasks = () => {
     setSortByPriority("");
     setSortByType("");
   };
+  
 
   return (
     <div className="mytasks">
-      {sortedTasks().filter((task) => task.isCompleted).length === 0 ? (
+      {sortedTasks().filter((task) => task.isCompleted).length == 0 ? (
         <div className="no-tasks">
           <img src={NoTasksImage} alt="No tasks" />
         </div>
