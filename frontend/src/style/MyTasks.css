@@ -104,6 +104,9 @@
   box-shadow: 0 2px 6px rgba(0.5, 0.5, 0.5, 0.5);
   border-radius: 4px;
   background-color: rgba(255, 254, 253, 0.5); /* Adjust the RGB values and opacity */
+  margin: 10px; /* Adjust the margin values as desired */
+  padding: 10px; /* Add padding to create space inside the container */
+  width: auto; /* Adjust the width as desired */
 }
 
 .create h3,
@@ -113,6 +116,7 @@
   font-family: "Fraunces", "Garamond", "Georgia", serif;
   background-color: rgba(132, 123, 112, 0.5); /* Adjust the RGB values and opacity */
 }
+
 .create span,
 .sort-options span {
   text-shadow: 0 1px 2px #0005;
@@ -121,6 +125,8 @@
   display: flex;
   align-items: center;
 }
+
+
 
 
 /* Styling for the bubbly button */
@@ -182,15 +188,16 @@
 }
 
 .no-tasks {
-  display: flex;
   justify-content: center;
   align-items: center;
+  display: flex; /* Add display property to enable flexbox */
 }
 
 .no-tasks img {
   max-width: 100%;
-  height: auto;
+  max-height: 100%;
 }
+
 
 .task-details {
   background: #fff;
