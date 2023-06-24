@@ -3,6 +3,10 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { format } from "date-fns";
 import { useState } from "react";
 import Confetti from "./Confetti";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faEyeSlash, faPen, faTrashCan, faCheck
+} from '@fortawesome/free-solid-svg-icons'
 
 const TaskDetails = ({ task }) => {
   const { dispatch } = useTasksContext();
@@ -225,16 +229,26 @@ const TaskDetails = ({ task }) => {
                   <strong>Priority: </strong>
                   {task.priority}
                 </p>)}
-                {!task.isCompleted && (<span className="material-symbols-outlined" onClick={handleUncheckRadioButtonClick}>
-                    radio_button_unchecked
-                </span>)}
-                {task.isCompleted && (<span className="material-symbols-outlined" onClick={handlecheckClick}>
-                    radio_button_checked
-                </span>)}
-                <div className="edit-buttons">
-                    <button onClick={handleEdit}>Edit</button>
-                    {task.isCompleted && (<button onClick={handleDelete}>Delete</button>)}
-                </div>
+
+                  <div className="task-buttons">
+                    <button className="task-edit" onClick={handleEdit}>
+                      <FontAwesomeIcon icon={faPen} /> Edit
+                    </button>
+                    {!task.isCompleted && (
+                    <button className="task-done" onClick={handleUncheckRadioButtonClick}>
+                      <FontAwesomeIcon icon={faCheck} /> Done
+                    </button>
+                    )}
+                    {task.isCompleted && (
+                    <button className="task-recover" onClick={handlecheckClick}>
+                      <FontAwesomeIcon icon={faEyeSlash} /> Recover Task
+                    </button>
+                    )}
+                      <button className="task-delete" onClick={handleDelete}>
+                        <FontAwesomeIcon icon={faTrashCan} /> Delete
+                      </button>
+                  </div>
+
               </>
             )}
           </div>
