@@ -6,7 +6,7 @@ import "../style/MyTasks.css";
 // Components
 import TaskDetails from "../components/TaskDetails";
 import TaskFrom from "../components/TasksForm";
-import NoTasksImage from "../assets/no-tasks-image.png"; // Import the image
+import NoTasksImage from "../assets/no-finished-tasks-image.png"; // Import the image
 
 const CompletedTasks = () => {
   const { tasks, dispatch } = useTasksContext();
@@ -71,66 +71,72 @@ const CompletedTasks = () => {
 
   return (
     <div className="mytasks">
-
-      <div className="tasks-container">
-        <div className="tasks">
-          {tasks && tasks.length > 0 ? (
-            sortedTasks().filter((task) => task.isCompleted).map((task) => <TaskDetails key={task._id} task={task} />)
-          ) : (
-            <div className="no-tasks">
-              <img src={NoTasksImage} alt="No tasks" />
+      {sortedTasks().filter((task) => task.isCompleted).length === 0 ? (
+        <div className="no-tasks">
+          <img src={NoTasksImage} alt="No tasks" />
+        </div>
+      ) : (
+        <div className="tasks-container">
+          <div className="tasks">
+            {sortedTasks()
+              .filter((task) => task.isCompleted)
+              .map((task) => <TaskDetails key={task._id} task={task} />)
+            }
+          </div>
+        </div>
+      )}
+      {!sortedTasks().filter((task) => task.isCompleted).length == 0 && (
+        <div>
+          <button className="sort-bar-button" onClick={() => setShowSortOptions(!showSortOptions)}>
+            {showSortOptions ? "Hide Sort Options" : "Show Sort Options"}
+          </button>
+          {showSortOptions && (
+            <div className="sort-options">
+              <h3>Sort Menu</h3>
+              <div>
+                <span>Sort By Title:</span>
+                <select value={sortByTitle} onChange={(e) => setSortByTitle(e.target.value)}>
+                  <option value="">-</option>
+                  <option value="title-asc">A-Z</option>
+                  <option value="title-desc">Z-A</option>
+                </select>
+              </div>
+              <div>
+                <span>Sort By Deadline:</span>
+                <select value={sortByDeadline} onChange={(e) => setSortByDeadline(e.target.value)}>
+                  <option value="">-</option>
+                  <option value="deadline-nearest">Nearest</option>
+                  <option value="deadline-farthest">Farthest</option>
+                </select>
+              </div>
+              <div>
+                <span>Sort By Priority:</span>
+                <select value={selectByPriority} onChange={(e) => setSortByPriority(e.target.value)}>
+                  <option value="">-</option>
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                </select>
+              </div>
+              <div>
+                <span>Sort By Type:</span>
+                <select value={selectByType} onChange={(e) => setSortByType(e.target.value)}>
+                  <option value="">-</option>
+                  <option value="personal">Personal</option>
+                  <option value="work">Work</option>
+                  <option value="home">Home</option>
+                  <option value="educational">Educational</option>
+                </select>
+              </div>
+              <button onClick={clearSearch}>Clear Search</button>
             </div>
           )}
         </div>
-      </div>
-      <div>
-        <button className = "sort-bar-button" onClick={() => setShowSortOptions(!showSortOptions)}>
-          {showSortOptions ? "Hide Sort Options" : "Show Sort Options"}
-        </button>
-        {showSortOptions && (
-          <div className="sort-options">
-            <h3>Sort Menu</h3>
-            <div>
-              <span>Sort By Title:</span>
-              <select value={sortByTitle} onChange={(e) => setSortByTitle(e.target.value)}>
-                <option value="">-</option>
-                <option value="title-asc">A-Z</option>
-                <option value="title-desc">Z-A</option>
-              </select>
-            </div>
-            <div>
-              <span>Sort By Deadline:</span>
-              <select value={sortByDeadline} onChange={(e) => setSortByDeadline(e.target.value)}>
-                <option value="">-</option>
-                <option value="deadline-nearest">Nearest</option>
-                <option value="deadline-farthest">Farthest</option>
-              </select>
-            </div>
-            <div>
-              <span>Sort By Priority:</span>
-              <select value={selectByPriority} onChange={(e) => setSortByPriority(e.target.value)}>
-                <option value="">-</option>
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-              </select>
-            </div>
-            <div>
-              <span>Sort By Type:</span>
-              <select value={selectByType} onChange={(e) => setSortByType(e.target.value)}>
-                <option value="">-</option>
-                <option value="personal">Personal</option>
-                <option value="work">Work</option>
-                <option value="home">Home</option>
-                <option value="educational">Educational</option>
-              </select>
-            </div>
-            <button onClick={clearSearch}>Clear Search</button>
-          </div>
-        )}
-      </div>
+      )}
     </div>
   );
+  
+  
 };
 
 export default CompletedTasks;

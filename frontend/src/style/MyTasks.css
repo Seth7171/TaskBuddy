@@ -182,10 +182,14 @@
 }
 
 .no-tasks {
-  margin: 20px auto;
-  padding: 20px auto;
-  position: relative;
-  max-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-tasks img {
+  max-width: 100%;
+  height: auto;
 }
 
 .task-details {
