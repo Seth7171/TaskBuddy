@@ -123,7 +123,7 @@ const TaskDetails = ({ task }) => {
     setEditedTask({ ...editedTask, [e.target.name]: e.target.value }); // Update the edited task details
   };
 
-  const handleUncheckButtonClick = (e) => {
+  const handleUncheckRadioButtonClick = (e) => {
     // Get the click coordinates relative to the window
     const { clientX, clientY } = e;
     const { top, left } = document.documentElement.getBoundingClientRect();
@@ -217,7 +217,7 @@ const TaskDetails = ({ task }) => {
                   <strong>Note: </strong>
                   {task.note}
                 </p>)}
-                {task.deadline && (<p style={task.isCompleted ? { textDecoration: 'line-through' } : {}}>
+                {task.type && (<p style={task.isCompleted ? { textDecoration: 'line-through' } : {}}>
                   <strong>Type: </strong>
                   {task.type}
                 </p>)}
@@ -235,7 +235,7 @@ const TaskDetails = ({ task }) => {
                       <FontAwesomeIcon icon={faPen} /> Edit
                     </button>
                     {!task.isCompleted && (
-                    <button className="task-done" onClick={handleUncheckButtonClick}>
+                    <button className="task-done" onClick={handleUncheckRadioButtonClick}>
                       <FontAwesomeIcon icon={faCheck} /> Done
                     </button>
                     )}
