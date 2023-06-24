@@ -10,6 +10,7 @@ const TaskDetails = ({ task }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isEditing, setIsEditing] = useState(false); // Track whether the task is being edited
   const [editedTask, setEditedTask] = useState(task); // Store the edited task details
+  const [clickCoordinates, setClickCoordinates] = useState({ x: 0, y: 0 });
 
   const handleClick = async () => {
     if (!user) {
@@ -61,8 +62,17 @@ const TaskDetails = ({ task }) => {
     setEditedTask({ ...editedTask, [e.target.name]: e.target.value }); // Update the edited task details
   };
 
-  const handleRadioButtonClick = () => {
+  const handleRadioButtonClick = (e) => {
+    // Get the click coordinates relative to the window
+    const { clientX, clientY } = e;
+    const { top, left } = document.documentElement.getBoundingClientRect();
+    const x = clientX - left;
+    const y = clientY - top;
+
+    // Set the click coordinates
+    setClickCoordinates({ x: x / window.innerWidth, y: y / window.innerHeight });
     setIsVisible(true); // Set isVisible to true when the radio button is clicked
+
     setTimeout(() => {
       handleClick(); // Call handleClick to delete the task
     }, 3500);
@@ -75,7 +85,7 @@ const TaskDetails = ({ task }) => {
 
     return (
       <>
-        {isVisible && <Confetti />}
+        {isVisible && <Confetti clickCoordinates={clickCoordinates} />}
         {!isVisible && (
           <div className="task-details">
             {isEditing ? (

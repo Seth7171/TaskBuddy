@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 
 import ReactCanvasConfetti from 'react-canvas-confetti';
 
-export default function Confetti() {
+export default function Confetti({ clickCoordinates }) {
   const refAnimationInstance = useRef(null);
 
   const getInstance = useCallback(instance => {
@@ -13,7 +13,7 @@ export default function Confetti() {
     refAnimationInstance.current &&
       refAnimationInstance.current({
         ...opts,
-        origin: { y: 0.7 },
+        origin: { x:clickCoordinates.x, y: clickCoordinates.y },
         particleCount: Math.floor(200 * particleRatio)
       });
   }, []);
