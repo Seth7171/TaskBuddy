@@ -58,7 +58,7 @@ const TaskForm = () => {
         <form className="create" onSubmit={handleSubmit}>
             <h3>Add a New Task</h3>
 
-            <label>Task Title*:</label>
+            <span>Task Title*:</span>
             <input
                 type="text"
                 onChange={(e) => setTitle(e.target.value)}
@@ -66,7 +66,7 @@ const TaskForm = () => {
                 className={emptyFields.includes('title') ? 'error' : ''}
             />
 
-            <label>Note:</label>
+            <span>Note:</span>
             <input
                 type="text"
                 onChange={(e) => setNote(e.target.value)}
@@ -74,7 +74,7 @@ const TaskForm = () => {
                 className={emptyFields.includes('note') ? 'error' : ''}
             />
 
-            <label>Deadline:</label>
+            <span>Deadline:</span>
             <input
                 type="date"
                 onChange={(e) => setDeadline(e.target.value)}
@@ -82,7 +82,7 @@ const TaskForm = () => {
                 className={emptyFields.includes('deadline') ? 'error' : ''}
             />
             
-            <label>Type:</label>
+            <span>Type:</span>
             <select
                 type="text"
                 value={type}
@@ -96,7 +96,7 @@ const TaskForm = () => {
                 <option value="educational">Educational</option>
             </select>
 
-            <label>Priority:</label>
+            <span>Priority:</span>
             <select
                 type="text"
                 value={priority}
