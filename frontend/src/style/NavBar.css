@@ -9,7 +9,7 @@
 body {
   background: #f1f1f1;
   margin: 0;
-  font-family: "Poppins";
+  font-family: "Poppins", cursive;
 }
 header {
   background: #fff;
@@ -45,9 +45,11 @@ header a {
   position: relative;
   color: #333; /* Initial color */
   transition: color 0.3s ease;
+  
 }
 
-header a::before {
+header a::before,
+header a::after {
   content: "";
   position: absolute;
   bottom: -2px;
@@ -64,15 +66,16 @@ header a:hover {
 }
 
 header a:hover::before {
-  transform: scaleX(1); /* Expand the line on hover */
+  transform-origin: left center;
+  transform: scaleX(1); /* Expand the line from left on hover */
+}
+
+header a:hover::after {
+  transform-origin: right center;
+  transform: scaleX(1); /* Expand the line from right on hover */
 }
 
 
-/* Add a subtle box shadow effect on header links when focused or active */
-header a:focus,
-header a:active {
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-}
 
 .pages{
   max-width: 1400px;
@@ -128,6 +131,7 @@ form button::before {
   opacity: 0.7;
   z-index: -1;
   transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+  
 }
 
 form button::before {
@@ -152,8 +156,6 @@ nav button:active,
 form button:active {
   transform: scale(0.9); /* Decrease the button size on click */
 }
-
-
 
 .burger-menu {
     width: 30px;
@@ -271,6 +273,5 @@ form button:active {
       padding: 10px;
     }
   }
-  
-  
+
   

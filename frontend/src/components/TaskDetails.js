@@ -137,34 +137,33 @@ const TaskDetails = ({ task }) => {
   };
 
   const formattedDeadline = task.deadline
-    ? format(new Date(task.deadline), "MMMM dd, yyyy")
+    ? format(new Date(task.deadline), "MMMM dd, yyyy, HH:mm")
     : "";
 
-
-    return (
-      <>
-        {isVisible && <Confetti clickCoordinates={clickCoordinates} zIndex={zIndex} />}
-        {!isVisible && (
-          <div className="task-details">
-            {isEditing ? (
-              <>
-                <h4>
-                  <input
-                    type="text"
-                    name="title"
-                    value={editedTask.title}
-                    onChange={handleChange}
-                  />
-                </h4>
-                <p>
-                  <strong>Note: </strong>
-                  <textarea
-                    name="note"
-                    value={editedTask.note}
-                    onChange={handleChange}
-                  />
-                </p>
-                <p>
+  return (
+    <>
+      {isVisible && <Confetti clickCoordinates={clickCoordinates} zIndex={zIndex} />}
+      {!isVisible && (
+        <div className="task-details">
+          {isEditing ? (
+            <>
+              <h4>
+                <input
+                  type="text"
+                  name="title"
+                  value={editedTask.title}
+                  onChange={handleChange}
+                />
+              </h4>
+              <p>
+                <strong>Note: </strong>
+                <textarea
+                  name="note"
+                  value={editedTask.note}
+                  onChange={handleChange}
+                />
+              </p>
+              <p>
                 <label>Type:</label>
                 <select
                   name="type"
@@ -210,22 +209,22 @@ const TaskDetails = ({ task }) => {
                 <h4 style={task.isCompleted ? { textDecoration: 'line-through' } : {}}>
                   {task.title}
                 </h4>
-                <p style={task.isCompleted ? { textDecoration: 'line-through' } : {}}>
+                {task.note && (<p style={task.isCompleted ? { textDecoration: 'line-through' } : {}}>
                   <strong>Note: </strong>
                   {task.note}
-                </p>
-                <p style={task.isCompleted ? { textDecoration: 'line-through' } : {}}>
+                </p>)}
+                {task.deadline && (<p style={task.isCompleted ? { textDecoration: 'line-through' } : {}}>
                   <strong>Type: </strong>
                   {task.type}
-                </p>
-                <p style={task.isCompleted ? { textDecoration: 'line-through' } : {}}>
+                </p>)}
+                {task.deadline && (<p style={task.isCompleted ? { textDecoration: 'line-through' } : {}}>
                   <strong>Deadline: </strong>
                   {formattedDeadline}
-                </p>
-                <p style={task.isCompleted ? { textDecoration: 'line-through' } : {}}>
+                </p>)}
+                {task.priority && (<p style={task.isCompleted ? { textDecoration: 'line-through' } : {}}>
                   <strong>Priority: </strong>
                   {task.priority}
-                </p>
+                </p>)}
                 {!task.isCompleted && (<span className="material-symbols-outlined" onClick={handleUncheckRadioButtonClick}>
                     radio_button_unchecked
                 </span>)}
@@ -245,5 +244,3 @@ const TaskDetails = ({ task }) => {
   };
   
   export default TaskDetails;
-
-
