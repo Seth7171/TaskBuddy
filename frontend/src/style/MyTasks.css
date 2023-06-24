@@ -173,7 +173,9 @@
   color: #333;
 }
 
-
+.completed {
+  text-decoration: line-through;
+}
 
 /* Add a media query for mobile devices */
 @media (max-width: 767px) {

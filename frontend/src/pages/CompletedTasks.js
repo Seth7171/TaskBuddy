@@ -128,8 +128,6 @@ const CompletedTasks = () => {
             <button onClick={clearSearch}>Clear Search</button>
           </div>
         )}
-        {!showSortOptions && (<TaskFrom />
-        )}
       </div>
     </div>
   );

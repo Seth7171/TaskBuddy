@@ -179,20 +179,22 @@ const TaskDetails = ({ task }) => {
               </>
             ) : (
               <>
-                <h4>{task.title}</h4>
-                <p>
+                <h4 style={task.isCompleted ? { textDecoration: 'line-through' } : {}}>
+                  {task.title}
+                </h4>
+                <p style={task.isCompleted ? { textDecoration: 'line-through' } : {}}>
                   <strong>Note: </strong>
                   {task.note}
                 </p>
-                <p>
+                <p style={task.isCompleted ? { textDecoration: 'line-through' } : {}}>
                   <strong>Type: </strong>
                   {task.type}
                 </p>
-                <p>
+                <p style={task.isCompleted ? { textDecoration: 'line-through' } : {}}>
                   <strong>Deadline: </strong>
                   {formattedDeadline}
                 </p>
-                <p>
+                <p style={task.isCompleted ? { textDecoration: 'line-through' } : {}}>
                   <strong>Priority: </strong>
                   {task.priority}
                 </p>
