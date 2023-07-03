@@ -32,9 +32,11 @@ const Navbar = () => {
                             <Link to="/mytasks">My Tasks</Link>
                         </li>
                         <li>
-                            <Link to="/completed-tasks">Completed Tasks</Link>
+                            <Link to="/completed-tasks">My Completed Tasks</Link>
                         </li>
-                        {/* Add more sidebar menu items */}
+                        <li>
+                            <Link to="/calendar">My Calendar</Link>
+                        </li>
                         </ul>
                     </div>
                     )}

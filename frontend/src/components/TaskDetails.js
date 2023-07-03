@@ -8,7 +8,7 @@ import {
   faEyeSlash, faPen, faTrashAlt, faCheck
 } from '@fortawesome/free-solid-svg-icons';
 
-const TaskDetails = ({ task }) => {
+const TaskDetails = ({ task, onClose  }) => {
   const { dispatch } = useTasksContext();
   const { user } = useAuthContext();
   const [isVisible, setIsVisible] = useState(false);
@@ -22,18 +22,29 @@ const TaskDetails = ({ task }) => {
     if (!user) {
       return;
     }
+    try{
+      const response = await fetch("/api/tasks/" + task._id, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
 
-    const response = await fetch("/api/tasks/" + task._id, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    });
+      const json = await response.json();
 
-    const json = await response.json();
-
-    if (response.ok) {
-      dispatch({ type: "DELETE_TASK", payload: json });
+      if (response.ok) {
+        dispatch({ type: "DELETE_TASK", payload: json });
+    } else {
+      console.error('Failed to delete task:', json.error);
+    }
+    } catch (error) {
+      console.error('Failed to delete task:', error);
+    }
+    try{
+      onClose();
+    }
+    catch (e){
+      console.error('Nothing to worry just no popup...', e);
     }
   };
 
@@ -63,6 +74,14 @@ const TaskDetails = ({ task }) => {
     } catch (error) {
       console.error('Failed to update task:', error);
     }
+    setTimeout(() => {
+      try{
+          onClose();
+      }
+      catch (e){
+        console.error('Nothing to worry just no popup...', e);
+      }
+    }, 300); // Delay of 300 milliseconds to match the conffetti duration
   };
 
   const handleCheckClick = async () => {
@@ -90,6 +109,12 @@ const TaskDetails = ({ task }) => {
       }
     } catch (error) {
       console.error('Failed to update task:', error);
+    }
+    try{
+      onClose();
+    }
+    catch (e){
+      console.error('Nothing to worry just no popup...', e);
     }
   };
 

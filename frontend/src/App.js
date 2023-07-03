@@ -8,6 +8,7 @@ import CompletedTasks from './pages/CompletedTasks';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import CalendarPage from "./pages/CalendarPage";
 // npm install react-scripts --save
 
 function App() {
@@ -25,6 +26,16 @@ function App() {
                 <TransitionGroup>
                   <CSSTransition key={window.location.pathname} classNames="fade" timeout={600}>
                     <MainPage />
+                  </CSSTransition>
+                </TransitionGroup>
+              }
+            />
+            <Route
+              path="/calendar"
+              element={
+                <TransitionGroup>
+                  <CSSTransition key={window.location.pathname} classNames="fade" timeout={600}>
+                    <CalendarPage />
                   </CSSTransition>
                 </TransitionGroup>
               }

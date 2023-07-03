@@ -1,0 +1,260 @@
+.calendar {
+    width: 100%;
+  }
+  
+  .calendar-tasks {
+    width: auto;
+    height: auto;
+    max-height: 80px;
+    max-width: 80px;
+    overflow: auto;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+  }
+  
+  .calendar-tasks::-webkit-scrollbar {
+    width: 8px;
+    background-color: #f1f1f1;
+  }
+  
+  .calendar-tasks::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+  }
+  
+  .calendar-tasks::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+  
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1rem;
+  }
+  
+  .calendar-day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .calendar-day.disabled {
+    background-color: transparent;
+  }
+  
+  .calendar-day-label {
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+  
+  .calendar-day-number {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .calendar-tasks {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .calendar-task {
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 4px;
+    border: none;
+    background-color: #e6e6e6;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .calendar-task.completed {
+    background-color: #a3d9a5;
+    color: #fff;
+    border-radius: 4px;
+  }
+  
+  .calendar-task {
+    background-color: #feabab;
+    color: #fff;
+    border-radius: 4px;
+  }
+  
+  .calendar-task:hover {
+    background-color: #d9d9d9;
+  }
+
+  .task-popup {
+    min-width: 250px;
+    min-height: 250px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    background-image: url('../assets/well-done.png');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  
+  .task-popup.fade-in {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .task-popup.fade-out {
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .popup-close {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #e53935;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  
+  
+  .popup-close:hover {
+    background-color: #c62828;
+  }
+
+
+  .calendar-nav {
+    background: #fff;
+    color: #bc12de; 
+    box-shadow: 0 0 0 2px #bc12de; /* Add a frame with a box shadow */
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-family: "Poppins";
+    cursor: pointer;
+    font-size: 1em;
+    margin-left: 10px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Pseudo-element for the button's bubble effect */
+  .calendar-nav::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    background-color: #bc12de; 
+    border-radius: 50%;
+    opacity: 0.7;
+    z-index: -1;
+    transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+  }
+  
+  /* Bubble effect on hover */
+  .calendar-nav:hover{
+    color: #ffffff; 
+  }
+  
+  /* Bubble effect on hover */
+  .calendar-nav:hover::before{
+    width: 200%; /* Expand the bubble's width */
+    height: 200%; /* Expand the bubble's height */
+  }
+  
+  /* Button click effect */
+  .calendar-nav:active {
+    transform: scale(0.9); /* Decrease the button size on click */
+  }
+  
+  
+  @media (max-width: 480px) {
+    .calendar {
+      font-size: 14px;
+    }
+  
+    .calendar-header {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+  
+    .calendar-nav {
+      font-size: 14px;
+      padding: 0.3rem 0.5rem;
+    }
+  
+    .calendar-title {
+      font-size: 16px;
+    }
+  
+    .calendar-grid {
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      
+    }
+  
+    .calendar-day {
+      padding: 0.5rem;
+      width: auto;
+      height: auto;
+    }
+  
+    .calendar-day-label {
+      font-size: 0.7rem;
+    }
+  
+    .calendar-day-number {
+      font-size: 1rem;
+    }
+  
+  
+    .calendar-task {
+      font-size: 10px;
+      padding: 6px;
+    }
+
+    .task-popup {
+        min-width: 250px;
+        min-height: 200px;
+        position: fixed;
+    }
+  
+    .popup-close {
+      font-size: 10px;
+      height: 20px;
+    }
+
+  }
+  
+  
