@@ -34,9 +34,9 @@ const TaskDetails = ({ task, onClose  }) => {
 
       if (response.ok) {
         dispatch({ type: "DELETE_TASK", payload: json });
-    } else {
-      console.error('Failed to delete task:', json.error);
-    }
+      } else {
+        console.error('Failed to delete task:', json.error);
+      }
     } catch (error) {
       console.error('Failed to delete task:', error);
     }

@@ -35,7 +35,7 @@ function App() {
               element={
                 <TransitionGroup>
                   <CSSTransition key={window.location.pathname} classNames="fade" timeout={600}>
-                    <CalendarPage />
+                    {user ? <CalendarPage /> : <Navigate to="/" />}
                   </CSSTransition>
                 </TransitionGroup>
               }
